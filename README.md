@@ -1,24 +1,60 @@
-# README
+#テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column   | Type   | Options      |
+| -------- | ------ | ------------ |
+| nickname | string | null:false   |
+| email    | string | unique: true |
+| password | string | null:false   |
 
-* Ruby version
+### Association
+has_many :items
+has_many :records
 
-* System dependencies
 
-* Configuration
+## itemsテーブル
 
-* Database creation
+| Column      | Type      | Options          |
+| ----------- | --------- | ---------------- |
+| title       | text      | null:false       |
+| description | text      | null:false       |
+| category    | string    | null:false       |
+| condition   | string    | null:false       |
+| charge      | string    | null:false       |
+| from        | string    | null:false       |
+| days        | string    | null:false       |
+| price       | string    | null:false       |
+| user_id     | reference | foreign_key:true |
 
-* Database initialization
+### Association
+belongs_to :user
+has_one :record
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## recordsテーブル
 
-* Deployment instructions
+| Column  | Type      | Options          |
+| ------- | --------- | ---------------- |
+| user_id | reference | foreign_key:true |
+| item_id | reference | foreign_key:true |
 
-* ...
+### Association
+belongs_to :user
+belongs_to :item
+has_one :address
+
+
+## addressテーブル
+
+| Column         | Type   | Options    |
+| -------------- | ------ | ---------- |
+| code           | string | null:false |
+| prefecture     | string | null:false |
+| municipalities | string | null:false |
+| block          | string | null:false |
+| apartment      | string |            |
+| telephone      | string | null:false |
+
+### Association
+belongs_to :record
