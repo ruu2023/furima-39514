@@ -47,14 +47,15 @@ has_one :address
 
 ## addressテーブル
 
-| Column         | Type   | Options    |
-| -------------- | ------ | ---------- |
-| code           | string | null:false |
-| prefecture     | string | null:false |
-| municipalities | string | null:false |
-| block          | string | null:false |
-| apartment      | string |            |
-| telephone      | string | null:false |
+| Column         | Type      | Options          |
+| -------------- | --------- | ---------------- |
+| code           | string    | null:false       |
+| prefecture     | string    | null:false       |
+| municipalities | string    | null:false       |
+| block          | string    | null:false       |
+| apartment      | string    |                  |
+| telephone      | string    | null:false       |
+| user_id        | reference | foreign_key:true |
 
 ### Association
 belongs_to :record
