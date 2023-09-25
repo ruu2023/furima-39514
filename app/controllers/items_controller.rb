@@ -4,4 +4,14 @@ class ItemsController < ApplicationController
 
   def new
   end
+
+  def create
+    Item.create(item_params)
+    redirect_to '/'
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:title, :description, :category_id, :condition_id, :charge_id, :prefecture_id, :day_id, :price)
+  end
 end
