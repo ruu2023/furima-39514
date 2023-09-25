@@ -14,4 +14,5 @@ class User < ApplicationRecord
   validates :surname_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナでご入力下さい。', allow_blank: true }
   validates :name_kana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナでご入力下さい。', allow_blank: true }
   validates :birthday, presence: true
+  has_many :items
 end
