@@ -9,3 +9,17 @@ eagerLoadControllersFrom("controllers", application)
 // Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
+
+window.addEventListener('load', function(){
+
+  const itemPrice = document.getElementById("item-price")
+  const taxPrice = document.getElementById("add-tax-price")
+  const profit = document.getElementById("profit")
+
+  itemPrice.addEventListener('input', function(){
+    const inputValue = itemPrice.value;
+    taxPrice.innerHTML = inputValue * 0.1
+    profit.innerHTML = inputValue * 0.9 
+  })
+
+})
