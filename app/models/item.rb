@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   validates :charge_id, numericality: { other_than: 1 , message: "は必須項目です。"}
   validates :prefecture_id, numericality: { other_than: 1 , message: "は必須項目です。"}
   validates :day_id, numericality: { other_than: 1 , message: "は必須項目です。"}
-  validates :price, presence: true, format: { with: /\A[-]?[0-9]+(\.[0-9]+)?\z/, message: 'は半角数字で入力してください', allow_blank: true}, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, allow_blank: true}
+  validates :price, presence: true, numericality: { only_integer: true , greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, allow_blank: true}
 
   belongs_to :user
   # # has_one :record
