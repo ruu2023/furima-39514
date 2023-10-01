@@ -18,8 +18,8 @@ window.addEventListener('load', function(){
 
   itemPrice.addEventListener('input', function(){
     const inputValue = itemPrice.value;
-    taxPrice.innerHTML = inputValue * 0.1
-    profit.innerHTML = inputValue * 0.9 
+    taxPrice.innerHTML = Math.floor(inputValue * 0.1)
+    profit.innerHTML = Math.floor(inputValue * 0.9 )
   })
 
 })
