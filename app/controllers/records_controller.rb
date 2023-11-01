@@ -1,9 +1,12 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
 
   def index
-    @record_address = RecordAddress.new
     set_item
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+    @record_address = RecordAddress.new
   end
 
   def new
