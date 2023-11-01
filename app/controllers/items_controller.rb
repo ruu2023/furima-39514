@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.order(created_at: :desc)
+    all_records
   end
   
   def new
@@ -11,6 +12,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    set_item
+    all_records
   end
 
   def create
@@ -23,7 +26,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user_id
+    set_item
+    all_records
+    if current_user.id != @item.user_id || @records.exists?(item_id: @item.id)
       redirect_to root_path
     end
   end
@@ -48,6 +53,10 @@ class ItemsController < ApplicationController
   private
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def all_records
+    @records = Record.all
   end
 
   def item_params

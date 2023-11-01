@@ -2,8 +2,10 @@ class RecordsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     set_item
-    if current_user.id == @item.user_id
+    all_records
+    if current_user.id == @item.user_id || @records.exists?(item_id: @item.id)
       redirect_to root_path
     end
     @record_address = RecordAddress.new
@@ -20,6 +22,7 @@ class RecordsController < ApplicationController
       @record_address.save
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       set_item
       render :index, status: :unprocessable_entity
     end
@@ -28,6 +31,10 @@ class RecordsController < ApplicationController
   private
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def all_records
+    @records = Record.all
   end
 
   def record_params
