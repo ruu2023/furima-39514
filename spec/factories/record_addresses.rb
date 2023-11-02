@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :record_address do
     post_code { '123-4567' }
-    prefecture_id { 1 }
+    prefecture_id { 2 }
     municipalities { '札幌市' }
     block { '中央区' }
     apartment { 'ハイツ' }

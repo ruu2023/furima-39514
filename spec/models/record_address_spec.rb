@@ -4,7 +4,8 @@ RSpec.describe RecordAddress, type: :model do
   describe '商品の購入' do
     before do
       user = FactoryBot.create(:user)
-      @record_address = FactoryBot.build(:record_address, user_id: user.id)
+      @record_address = FactoryBot.build(:record_address, user_id: user.id, item_id: '1')
+      # binding.pry
     end
 
     context '内容に問題ない場合' do
@@ -33,6 +34,11 @@ RSpec.describe RecordAddress, type: :model do
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it 'prefectureに"---"が選択されていると保存できないこと' do
+        @record_address.prefecture_id = '1'
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it 'municipalitiesが空だと保存できないこと' do
         @record_address.municipalities = ''
         @record_address.valid?
@@ -48,8 +54,18 @@ RSpec.describe RecordAddress, type: :model do
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Telephone can't be blank")
       end
-      it 'telephoneが10桁以上11桁以内でないと保存できないこと' do
+      it 'telephoneが10桁未満と保存できないこと' do
         @record_address.telephone = '000000000'
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("Telephone is invalid.")
+      end
+      it 'telephoneが12桁以上と保存できないこと' do
+        @record_address.telephone = '000000000000'
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("Telephone is invalid.")
+      end
+      it 'telephoneに半角数字以外が含まれている場合は購入できないこと' do
+        @record_address.telephone = 'a0000000000'
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Telephone is invalid.")
       end
@@ -57,6 +73,16 @@ RSpec.describe RecordAddress, type: :model do
         @record_address.token = nil
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'userが紐付いていないと保存できないこと' do
+        @record_address.user_id = nil
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていないと保存できないこと' do
+        @record_address.item_id = nil
+        @record_address.valid?
+        expect(@record_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
