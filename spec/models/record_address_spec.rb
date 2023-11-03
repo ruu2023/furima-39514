@@ -27,7 +27,7 @@ RSpec.describe RecordAddress, type: :model do
       it 'post_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @record_address.post_code = '0000000'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@record_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'prefectureを選択していないと保存できないこと' do
         @record_address.prefecture_id = ''
@@ -57,19 +57,19 @@ RSpec.describe RecordAddress, type: :model do
       it 'telephoneが10桁未満と保存できないこと' do
         @record_address.telephone = '000000000'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Telephone is invalid.")
+        expect(@record_address.errors.full_messages).to include('Telephone is invalid.')
       end
       it 'telephoneが12桁以上と保存できないこと' do
         @record_address.telephone = '000000000000'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Telephone is invalid.")
+        expect(@record_address.errors.full_messages).to include('Telephone is invalid.')
       end
       it 'telephoneに半角数字以外が含まれている場合は購入できないこと' do
         @record_address.telephone = 'a0000000000'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Telephone is invalid.")
+        expect(@record_address.errors.full_messages).to include('Telephone is invalid.')
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @record_address.token = nil
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Token can't be blank")
