@@ -10,7 +10,7 @@ eagerLoadControllersFrom("controllers", application)
 // import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
 // lazyLoadControllersFrom("controllers", application)
 
-window.addEventListener('load', function(){
+window.addEventListener('turbo:load', function(){
 
   const itemPrice = document.getElementById("item-price")
   const taxPrice = document.getElementById("add-tax-price")
