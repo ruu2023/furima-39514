@@ -1,18 +1,13 @@
 <%# 下部広告部分 %>
 <div class='ad-footer-contents'>
   <p class='ad-footer-explain'>
-    だれでもかんたん、人生を変えるフリマアプリ
+    だれでもかんたん、人生を変えるフリマサービス
   </p>
-  <h2 class='ad-footer-title'>
-    今すぐ無料ダウンロード！
+  <h2 class='ad-footer-title' style="margin: 14px; padding: 10px; border: solid 1px black; border-radius: 20px; box-shadow: 10px 5px 5px gray;">
+    <%= link_to '登録して始める', new_user_registration_path, style: "color: white;" %>
   </h2>
-  <div class='store-btn'>
-    <%= link_to image_tag("app-store.svg", class:"apple-btn"), "#" %>
-    <%= link_to image_tag("google-play.png", class:"google-btn"), "#" %>
-  </div>
 </div>
 <%# /下部広告部分 %>
-
 <div class='footer'>
   <div class='footer-contents'>
     <div class='furima-details'>
@@ -22,21 +17,6 @@
         <li><%= link_to 'プライバシーポリシー', "#", class: "footer-link" %></li>
         <li><%= link_to 'FURIMA利用規約', "#", class: "footer-link" %></li>
         <li><%= link_to 'ポイントに関する特約', "#", class: "footer-link" %></li>
-      </ul>
-    </div>
-    <div class='furima-details'>
-      <h2 class='footer-content-head'>FURIMAを見る</h2>
-      <ul>
-        <li><%= link_to 'カテゴリー一覧', "#", class: "footer-link" %></li>
-        <li><%= link_to 'ブランド一覧', "#", class: "footer-link" %></li>
-      </ul>
-    </div>
-    <div class='furima-details'>
-      <h2 class='footer-content-head'>FURIMAについて</h2>
-      <ul>
-        <li><%= link_to 'FURIMAガイド', "#", class: "footer-link" %></li>
-        <li><%= link_to 'FURIMAロゴ利用ガイドライン', "#", class: "footer-link" %></li>
-        <li><%= link_to 'お知らせ', "#", class: "footer-link" %></li>
       </ul>
     </div>
   </div>
