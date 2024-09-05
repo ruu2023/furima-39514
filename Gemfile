@@ -78,6 +78,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn', '6.1.0'
 end
 
 gem 'devise'
@@ -90,3 +91,7 @@ gem 'pry-rails'
 
 gem 'payjp'
 gem 'gon'
+
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'rails-i18n'

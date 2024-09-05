@@ -4,15 +4,15 @@ class RecordAddress
                 :token
 
   with_options presence: true do
-    validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
+    validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: :invalid }
     validates :municipalities
     validates :block
-    validates :telephone, format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid.' }
+    validates :telephone, format: { with: /\A[0-9]{10,11}\z/, message: :invalid }
     validates :item_id
     validates :user_id
     validates :token
   end
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 1, message: :other_than }
 
   def save
     # 寄付情報を保存し、変数donationに代入する
